@@ -1,4 +1,0 @@
-login
-search music
-request for new music
-feedback like of play
