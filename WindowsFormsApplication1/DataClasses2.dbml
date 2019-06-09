@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db3" Class="DataClasses2DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=db3;Integrated Security=True" SettingsObjectName="WindowsFormsApplication1.Properties.Settings" SettingsPropertyName="db3ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.enteghadatvapishnahadha" Member="enteghadatvapishnahadhas">
+    <Type Name="enteghadatvapishnahadha">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="musicid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="matn" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="music_enteghadatvapishnahadha" Member="music" ThisKey="musicid" OtherKey="id" Type="music" IsForeignKey="true" />
+      <Association Name="user_enteghadatvapishnahadha" Member="user" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.jhanr" Member="jhanrs">
+    <Type Name="jhanr">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Association Name="jhanr_tablighat" Member="tablighats" ThisKey="id" OtherKey="jhanrid" Type="tablighat" />
+      <Association Name="jhanr_music" Member="musics" ThisKey="id" OtherKey="jhanrid" Type="music" />
+    </Type>
+  </Table>
+  <Table Name="dbo.liked" Member="likeds">
+    <Type Name="liked">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="musicid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="music_liked" Member="music" ThisKey="musicid" OtherKey="id" Type="music" IsForeignKey="true" />
+      <Association Name="user_liked" Member="user" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pishnahad" Member="pishnahads">
+    <Type Name="pishnahad">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name_new_music_pishnahadi" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="user_pishnahad" Member="user" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.shenideshode" Member="shenideshodes">
+    <Type Name="shenideshode">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="musicid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="music_shenideshode" Member="music" ThisKey="musicid" OtherKey="id" Type="music" IsForeignKey="true" />
+      <Association Name="user_shenideshode" Member="user" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tablighat" Member="tablighats">
+    <Type Name="tablighat">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ahamiyat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="akharin_zamane_nemayesh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="adresefile" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="jhanrid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="jhanr_tablighat" Member="jhanr" ThisKey="jhanrid" OtherKey="id" Type="jhanr" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.music" Member="musics">
+    <Type Name="music">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="fileaddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="jhanrid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="music_enteghadatvapishnahadha" Member="enteghadatvapishnahadhas" ThisKey="id" OtherKey="musicid" Type="enteghadatvapishnahadha" />
+      <Association Name="music_liked" Member="likeds" ThisKey="id" OtherKey="musicid" Type="liked" />
+      <Association Name="music_shenideshode" Member="shenideshodes" ThisKey="id" OtherKey="musicid" Type="shenideshode" />
+      <Association Name="music_suggestion" Member="suggestions" ThisKey="id" OtherKey="musicid" Type="suggestion" />
+      <Association Name="jhanr_music" Member="jhanr" ThisKey="jhanrid" OtherKey="id" Type="jhanr" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.suggestion" Member="suggestions">
+    <Type Name="suggestion">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="musicid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="music_suggestion" Member="music" ThisKey="musicid" OtherKey="id" Type="music" IsForeignKey="true" />
+      <Association Name="user_suggestion" Member="user" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="pas" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="saletavalod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ismodir" Type="System.String" DbType="NChar(5)" CanBeNull="true" />
+      <Association Name="user_enteghadatvapishnahadha" Member="enteghadatvapishnahadhas" ThisKey="id" OtherKey="userid" Type="enteghadatvapishnahadha" />
+      <Association Name="user_liked" Member="likeds" ThisKey="id" OtherKey="userid" Type="liked" />
+      <Association Name="user_pishnahad" Member="pishnahads" ThisKey="id" OtherKey="userid" Type="pishnahad" />
+      <Association Name="user_shenideshode" Member="shenideshodes" ThisKey="id" OtherKey="userid" Type="shenideshode" />
+      <Association Name="user_suggestion" Member="suggestions" ThisKey="id" OtherKey="userid" Type="suggestion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.t2" Member="t2s">
+    <Type Name="t2">
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="n" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
